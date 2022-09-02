@@ -21,7 +21,12 @@ function App() {
         <h1>To-Do List</h1>
       </div>
       <div className="form">
-        <input type="text" name="item" onChange={handleChange} />
+        <input
+          type="text"
+          name="item"
+          onChange={handleChange}
+          value={inputtext}
+        />
         <button onClick={handleItems}>
           <span>Add</span>
         </button>
