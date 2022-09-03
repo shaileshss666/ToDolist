@@ -1,3 +1,4 @@
+import { filters } from "pug/lib";
 import React, { useState } from "react";
 import Todo from "./Todo";
 function App() {
@@ -13,6 +14,13 @@ function App() {
       return [...prevValue, inputtext];
     });
     setInputtext("");
+  }
+  function deleteItem(id) {
+    setItems((prevValue) => {
+      return prevValue.filter((item, index) => {
+        return index !== id;
+      });
+    });
   }
 
   return (
@@ -33,8 +41,13 @@ function App() {
       </div>
       <div>
         <ul>
-          {items.map((itemvalue) => (
-            <Todo text={itemvalue} />
+          {items.map((itemvalue, index) => (
+            <Todo
+              key={index}
+              id={index}
+              text={itemvalue}
+              onChecked={deleteItem}
+            />
           ))}
         </ul>
       </div>
